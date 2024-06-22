@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Semáforo</title>
+  <style>
+    .semaforo {
+      width: 50px;
+      height: 150px;
+      background-color: black;
+      padding: 10px;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+    }
+    .luz {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: grey;
+    }
+  </style>
+</head>
+<body>
+  <div class="semaforo">
+    <div id="rojo" class="luz"></div>
+    <div id="amarillo" class="luz"></div>
+    <div id="verde" class="luz"></div>
+  </div>
+
+  <script>
+    let currentColor = 'rojo';
+
+    function cambiarColor() {
+      document.getElementById('rojo').style.backgroundColor = 'grey';
+      document.getElementById('amarillo').style.backgroundColor = 'grey';
+      document.getElementById('verde').style.backgroundColor = 'grey';
+
+      switch (currentColor) {
+        case 'rojo':
+          console.log('Cambio a Verde');
+          document.getElementById('verde').style.backgroundColor = 'green';
+          currentColor = 'verde';
+          break;
+        case 'verde':
+          console.log('Cambio a Amarillo');
+          document.getElementById('amarillo').style.backgroundColor = 'yellow';
+          currentColor = 'amarillo';
+          break;
+        case 'amarillo':
+          console.log('Cambio a Rojo');
+          document.getElementById('rojo').style.backgroundColor = 'red';
+          currentColor = 'rojo';
+          break;
+      }
+    }
+
+    // Cambia el color del semáforo cada 2 segundos
+    const intervaloSemaforo = setInterval(cambiarColor, 2000);
+
+    // Detener el semáforo después de 10 segundos
+    setTimeout(() => {
+      clearInterval(intervaloSemaforo);
+      console.log('El semáforo ha sido detenido.');
+    }, 10000);
+
+    // Ejemplo adicional
+    function imprimeHola() {
+      console.log('Hola');
+    }
+
+    function detente(intervalo) {
+      clearInterval(intervalo);
+      console.log('Listo!');
+    }
+
+    const intervaloHola = setInterval(imprimeHola, 1000);
+
+    setTimeout(() => detente(intervaloHola), 5000);
+  </script>
+</body>
+</html>
